@@ -7,15 +7,6 @@ app.use(express.json());
 
 const customers = [];
 
-/*
-  TIpos de parâmetros
-
-  Route Params => Identificar um recurso editar/deletar/buscar
-  Query Params => Paginação / Filtro 
-  BOdy Params => Os objetos para inserção/alteração (JSON) 
-
-*/
-
 // Middleware
 function verifyIfAccountCPFExists(request, response, next) {
   const {cpf} = request.headers;
@@ -110,4 +101,58 @@ app.post('/withdraw', verifyIfAccountCPFExists, (request, response) => {
   return response.status(201).send()
 })
 
+app.get('/statement/date', verifyIfAccountCPFExists, (request, response) => {
+  const {customer} = request;
+  const { date } = request.query;
+
+
+  const dateFormatted = new Date(date + " 00:00")
+
+  const statement = customer.statement.filter(
+    (statements) => statements.created_at.toDateString() === new Date(dateFormatted).toDateString()
+  )
+
+  return response.json(statement);
+})
+
+app.put('/account', verifyIfAccountCPFExists, (request, response) => {
+  const { name } = request.body;
+  const { customer } = request;
+
+  customer.name = name;
+
+  return response.status(201).send();
+})
+
+app.get('/account', verifyIfAccountCPFExists, (request, response) => {
+  const { customer } = request;
+
+  return response.json(customer)
+})
+
+app.delete('/account', verifyIfAccountCPFExists, (request, response) => {
+  const { customer } = request;
+
+  customers.splice(customer, 1);
+
+  return response.status(200).json(customers);
+})
+
+app.get('/balance', verifyIfAccountCPFExists, (request, response) => {
+  const { customer } = request;
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
+})
+
 app.listen(3333, () => console.log("Server is running"))
+
+/*
+  TIpos de parâmetros
+
+  Route Params => Identificar um recurso editar/deletar/buscar
+  Query Params => Paginação / Filtro 
+  BOdy Params => Os objetos para inserção/alteração (JSON) 
+
+*/
