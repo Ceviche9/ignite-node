@@ -1,27 +1,27 @@
 import { Router } from "express"
-import { CategoryProps } from "../model/Category";
+import { CategoriesRepositories } from "../repositories/CategoryRepositories";
 
 const categoriesRoutes = Router();
-
-const categories: CategoryProps[] = [];
+const categoriesRepositories = new CategoriesRepositories()
 
 categoriesRoutes.post("/", (request, response) => {
   const {name, description} = request.body
 
-  // Dessa forma o constructor do CategoryProps irá criar o id.
-  const category = new CategoryProps();
-  
-  // Uma forma mais rápida de atribuir os valores para um objeto;
-  Object.assign(category, {
-    name, 
-    description, 
-    created_at: new Date()
-  })
+  const categoryAlreadyExists = categoriesRepositories.findByName(name)
 
-  categories.push(category)
+  if(categoryAlreadyExists) {
+    return response.status(400).json({message: "Category already exists"})
+  }
 
-  response.status(201).json({category})
+  categoriesRepositories.create({name, description})
+
+  response.status(201).send()
 })
 
+categoriesRoutes.get("/", (request, response) => {
+ const all = categoriesRepositories.list()
+
+ return response.json({all})
+})
 
 export { categoriesRoutes }
