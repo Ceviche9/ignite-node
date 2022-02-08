@@ -6,6 +6,7 @@ interface ICreateCategoryDTO {
   description: string
 }
 
+// Contrato que facilita a implementação desse subtipo em várias classes
 interface ICategoriesRepository {
   findByName(name: string): CategoryModel
   list(): CategoryModel[]

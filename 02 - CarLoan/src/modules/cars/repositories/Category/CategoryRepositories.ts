@@ -1,9 +1,12 @@
 import { CategoryModel } from "../../model/Category";
 import { ICategoriesRepository } from "./ICategoriesRepository";
 
+// Responsável por utilizar os métodos necessários de acordo com o contrato.
+// contrato = ICategoriesRepository
 class CategoriesRepository implements ICategoriesRepository {
   private categories: CategoryModel[];
 
+  // Sempre que essa classe for instanciada um novo array de categories vai ser criado.
   constructor() {
     this.categories = [];
   }
