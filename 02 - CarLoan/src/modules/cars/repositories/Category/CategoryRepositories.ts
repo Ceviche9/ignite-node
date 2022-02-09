@@ -6,9 +6,19 @@ import { ICategoriesRepository } from "./ICategoriesRepository";
 class CategoriesRepository implements ICategoriesRepository {
   private categories: CategoryModel[];
 
-  // Sempre que essa classe for instanciada um novo array de categories vai ser criado.
-  constructor() {
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  // Esse  método será responsável por criar uma instância ou repassar uma.
+  public static getInstance(): CategoriesRepository {
+    if(!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+
+    return CategoriesRepository.INSTANCE
   }
 
   // Método para criar uma nova categoria.

@@ -1,12 +1,11 @@
-import { ICategoriesRepository } from "../repositories/Category/ICategoriesRepository"
+import { ICategoriesRepository } from "../../../repositories/Category/ICategoriesRepository"
 
 interface ICreateCategoryRequest {
   name: string
   description: string
 }
 
-class CreateCategoryService {
-
+class CreateCategoryUseCase {
   // Utilizando o private a variável categoriesRepository fica disponível para toda a classe usar.
   constructor(private categoriesRepository: ICategoriesRepository) {}
   
@@ -21,4 +20,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService }
+export { CreateCategoryUseCase }

@@ -1,7 +1,6 @@
 import { SpecificationModel } from "../../model/Specification";
 import { ISpecificationDTO, ISpecificationRepository } from "./ISpecificationRepository";
 
-
 class SpecificationRepository implements ISpecificationRepository {
   private specification: SpecificationModel[]
 
