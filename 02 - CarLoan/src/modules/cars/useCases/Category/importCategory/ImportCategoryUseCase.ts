@@ -29,6 +29,8 @@ class ImportCategoryUseCase {
         categories.push({ name, description})
       })// Quando o parse for finalizado
         .on("end", () => {
+          // Depois de registrar os dados do arquivo ele pode ser deletado.
+          fs.promises.unlink(file.path)
         resolve(categories)
       })
         .on("error", (err) => {
