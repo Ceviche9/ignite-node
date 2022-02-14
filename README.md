@@ -19,6 +19,10 @@ link: https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbd
 
 link: https://www.notion.so/Docker-e-Docker-Compose-16771f2ceefe4a05a8c29df4ca49e97a
 
+#### Refatoração Docker com TypeORM
+
+link: https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b
+
 # Índice
 
 ### 📁 Chapter I
