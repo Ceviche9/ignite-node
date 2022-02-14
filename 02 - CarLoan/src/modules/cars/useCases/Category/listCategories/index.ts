@@ -2,7 +2,7 @@ import { CategoriesRepository } from "../../../repositories/Category/CategoryRep
 import { ListCategoriesController } from "./ListCategoriesController";
 import { ListCategoriesUseCase } from "./ListCategoriesUseCase";
 
-const categoriesRepository = CategoriesRepository.getInstance()
+const categoriesRepository = null
 const listCategoriesUseCase = new ListCategoriesUseCase(categoriesRepository)
 
 // Importante lembrar que o que deve ser exportado é o controller.

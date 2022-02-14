@@ -1,48 +1,35 @@
-import { CategoryModel } from "../../model/Category";
-import { ICategoriesRepository } from "./ICategoriesRepository";
+import { CategoryModel } from "../../entities/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
+import { getRepository, Repository } from "typeorm";
 
 // Responsável por utilizar os métodos necessários de acordo com o contrato.
 // contrato = ICategoriesRepository
 class CategoriesRepository implements ICategoriesRepository {
-  private categories: CategoryModel[];
+  private repository: Repository<CategoryModel>
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
-    this.categories = [];
-  }
-
-  // Esse  método será responsável por criar uma instância ou repassar uma.
-  public static getInstance(): CategoriesRepository {
-    if(!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-
-    return CategoriesRepository.INSTANCE
+  constructor() {
+    this.repository = getRepository(CategoryModel);
   }
 
   // Método para criar uma nova categoria.
-  create({name, description}): void {
-    // Dessa forma o constructor do CategoryProps irá criar o id.
-    const category = new CategoryModel();
-    
-    // Uma forma mais rápida de atribuir os valores para um objeto;
-    Object.assign(category, {
-      name, 
-      description, 
-      created_at: new Date()
+  async create({name, description}: ICreateCategoryDTO): Promise<void> {
+    const category = this.repository.create({
+      description,
+      name
     })
 
-    this.categories.push(category)
+    await this.repository.save(category)
   }
 
-  findByName(name: string): CategoryModel {
-    const category = this.categories.find(category => category.name === name);
+  async findByName(name: string): Promise<CategoryModel> {
+    // Select * from categories where name = "name" limit = 1
+    const category = await this.repository.findOne({ name })
     return category;
   }
 
-  list(): CategoryModel[] {
-    return this.categories;
+  async list(): Promise<CategoryModel[]> {
+    const categories = await this.repository.find()
+    return categories;
   }
 }
 
