@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "createMigration": "ts-node-dev ./node_modules/typeorm/cli migrations:create -n",
+    "runMigrations": "ts-node-dev ./node_modules/typeorm/cli migration:run"
   },
   "dependencies": {
     "csv-parse": "^5.0.4",
@@ -25,8 +28,11 @@
     "eslint-plugin-import-helpers": "^1.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "multer": "^1.4.4",
+    "pg": "^8.7.3",
     "prettier": "^2.5.1",
+    "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.1.8",
+    "typeorm": "^0.2.41",
     "typescript": "^4.5.5"
   }
 }
