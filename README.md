@@ -9,9 +9,19 @@
 
 Neste Repositório se encontra todos os projetos e anotações desenvolvidos na trilha de NodeJS do Ignite da [Rocketseat](https://github.com/Rocketseat).
 
+### Configuração de ambiente
+
 #### ESLint e Prettier - Trilha Node.js
 
 link: https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779#eaf6e8bdcabc4d809cdae302e29750da
+
+#### Docker e Docker Compose
+
+link: https://www.notion.so/Docker-e-Docker-Compose-16771f2ceefe4a05a8c29df4ca49e97a
+
+#### Refatoração Docker com TypeORM
+
+link: https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b
 
 # Índice
 
