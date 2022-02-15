@@ -1,25 +1,24 @@
 import { Router } from "express"
 import multer from "multer"
+import { CreateCategoryController } from "../modules/cars/useCases/Category/createCategory.ts/CreateCategoryController";
 
-import createCategoryController  from "../modules/cars/useCases/Category/createCategory.ts";
-import { importCategoryController } from "../modules/cars/useCases/Category/importCategory";
-import { listCategoriesController } from "../modules/cars/useCases/Category/listCategories";
+import { ImportCategoryController } from "../modules/cars/useCases/Category/importCategory/ImportCategoryController";
+import { ListCategoriesController } from "../modules/cars/useCases/Category/listCategories/ListCategoriesController";
 
 const categoriesRoutes = Router();
 const upload = multer({
   dest: './tmp',
 })
 
-categoriesRoutes.post("/", (request, response) => {
-  return createCategoryController().handle(request, response)
-})
+const createCategoryControlle = new CreateCategoryController()
+const importCategoryController = new ImportCategoryController()
+const listCategoriesController = new ListCategoriesController()
 
-categoriesRoutes.get("/", (request, response) => {
-  return listCategoriesController.handle(request, response)
-})
+// Dessa forma o express consegue passar automaticamente o request e o response.
+categoriesRoutes.post("/", createCategoryControlle.handle)
 
-categoriesRoutes.post('/import', upload.single("file"), (request, response) => {
-  return importCategoryController.handle(request, response)
-})
+categoriesRoutes.get("/", listCategoriesController.handle)
+
+categoriesRoutes.post('/import', upload.single("file"), importCategoryController.handle)
 
 export { categoriesRoutes }
