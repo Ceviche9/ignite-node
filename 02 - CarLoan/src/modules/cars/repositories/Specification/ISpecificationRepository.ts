@@ -8,7 +8,7 @@ interface ISpecificationDTO {
 // A criação de uma rota nova começa pala criação do contrato e da Model.
 interface ISpecificationRepository {
   create({name, description}: ISpecificationDTO): Promise<void>
-  findByName(name: string): Promise<SpecificationModel>
+  findByName(name: string): Promise<SpecificationModel | null>
 }
 
 export {ISpecificationDTO, ISpecificationRepository}

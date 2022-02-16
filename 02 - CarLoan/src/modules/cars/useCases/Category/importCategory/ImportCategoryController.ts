@@ -4,17 +4,16 @@ import { ImportCategoryUseCase } from './ImportCategoryUseCase'
 
 
 class ImportCategoryController {
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request
     const importCategoryUseCase = container.resolve(ImportCategoryUseCase)
 
     try { 
-      importCategoryUseCase.execute(file)
+      await importCategoryUseCase.execute(file)
   
       return response.send()
-
     }catch(err) {
-      return response.status(400).json({message: err.message})
+      return response.status(400).json({ error: err.message })
     }
   }
 
