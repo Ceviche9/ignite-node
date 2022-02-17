@@ -1,4 +1,4 @@
-import { SpecificationModel } from "../../entities/Specification";
+import { Specification } from "../../entities/Specification";
 
 interface ISpecificationDTO {
   name: string
@@ -8,7 +8,7 @@ interface ISpecificationDTO {
 // A criação de uma rota nova começa pala criação do contrato e da Model.
 interface ISpecificationRepository {
   create({name, description}: ISpecificationDTO): Promise<void>
-  findByName(name: string): Promise<SpecificationModel | null>
+  findByName(name: string): Promise<Specification | null>
 }
 
 export {ISpecificationDTO, ISpecificationRepository}

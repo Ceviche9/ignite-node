@@ -1,14 +1,14 @@
 import { getRepository, Repository } from "typeorm";
-import { CategoryModel } from "../../../entities/Category";
+import { Category } from "../../../entities/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 // Responsável por utilizar os métodos necessários de acordo com o contrato.
 // contrato = ICategoriesRepository
 class CategoriesRepository implements ICategoriesRepository {
-  private repository: Repository<CategoryModel>
+  private repository: Repository<Category>
 
   constructor() {
-    this.repository = getRepository(CategoryModel);
+    this.repository = getRepository(Category);
   }
 
   // Método para criar uma nova categoria.
@@ -21,13 +21,13 @@ class CategoriesRepository implements ICategoriesRepository {
     await this.repository.save(category)
   }
 
-  async findByName(name: string): Promise<CategoryModel> {
+  async findByName(name: string): Promise<Category> {
     // Select * from categories where name = "name" limit = 1
     const category = await this.repository.findOne({ name })
     return category;
   }
 
-  async list(): Promise<CategoryModel[]> {
+  async list(): Promise<Category[]> {
     const categories = await this.repository.find()
     return categories;
   }
