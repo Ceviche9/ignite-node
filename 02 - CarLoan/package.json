@@ -10,6 +10,7 @@
     "runMigrations": "ts-node-dev ./node_modules/typeorm/cli migration:run"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "csv-parse": "^5.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "express": "^4.17.2",
