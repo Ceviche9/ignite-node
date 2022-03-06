@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "createMigration": "ts-node-dev ./node_modules/typeorm/cli migrations:create -n",
-    "runMigrations": "ts-node-dev ./node_modules/typeorm/cli migration:run"
+    "create-migration": "ts-node-dev ./node_modules/typeorm/cli migrations:create -n",
+    "run-migrations": "ts-node-dev ./node_modules/typeorm/cli migration:run"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

@@ -20,6 +20,10 @@ export async function ensureAthenticated(request: Request, response: Response, n
     const user = usersRepository.findById(user_id)
 
     if (!user) throw new AppError("User not found")
+
+    request.user = {
+      id: user_id
+    }
   
     next()
   } catch(err) {
