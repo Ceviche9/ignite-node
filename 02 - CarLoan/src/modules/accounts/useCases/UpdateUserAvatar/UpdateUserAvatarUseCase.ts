@@ -2,14 +2,7 @@ import { inject, injectable } from "tsyringe"
 
 import { deleteFile } from "../../../../utils/file"
 
-import { IUsersRepository } from "../../repositories/IUsersRepository"
-  // Adicionar coluna avatar na tabela de users.
-
-  // Refatorar usuário com a coluna avatar.
-
-  // Configuração de upload do multer.
-
-  // Criar regra de negócio do upload.
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository"
 
 interface IRequest {
   user_id: string
