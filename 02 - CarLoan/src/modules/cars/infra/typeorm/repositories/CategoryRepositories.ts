@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
-import { Category } from "../../../entities/Category";
-import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
+import { Category } from "../../../infra/typeorm/entities/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "@modules/cars/repositories/Category/ICategoriesRepository";
 
 // Responsável por utilizar os métodos necessários de acordo com o contrato.
 // contrato = ICategoriesRepository

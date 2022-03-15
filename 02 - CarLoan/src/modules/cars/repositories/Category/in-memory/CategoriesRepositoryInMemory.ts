@@ -1,4 +1,4 @@
-import { Category } from "../../../entities/Category";
+import { Category } from "../../../infra/typeorm/entities/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 // Para os testes será utilizado esse repositório em memória.

@@ -2,7 +2,7 @@ import fs from "fs"
 import { parse } from "csv-parse"
 import { inject, injectable } from "tsyringe"
 import { ICategoriesRepository } from "../../../repositories/Category/ICategoriesRepository";
-import { AppError } from "@errors/AppError";
+import { AppError } from "@shared/infra/http/errors/AppError";
 
 interface IImportCategory {
   name: string

@@ -2,7 +2,7 @@ import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRe
 import { CreateUserUseCase } from "../../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "../AuthenticateUserUseCase";
 import { ICreateUserDTO } from '../../../dtos/ICreateUser';
-import { AppError } from "../../../../../errors/AppError";
+import { AppError } from "@shared/infra/http/errors/AppError";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
