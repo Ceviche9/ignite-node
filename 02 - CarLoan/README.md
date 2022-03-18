@@ -2,13 +2,11 @@
 
 **RF** => Requisitos funcionais
 Deve ser possível cadastrar um novo carro.
-Deve ser possível listar todas as categorias.
 
 **RN** => Regras de negócio
-Apenas usuário administrador pode cadastrar um novo carro.
 Não deve ser possível cadastrar um carro com uma placa já cadastrada.
-Não deve ser possível alterar a placa de um carro já cadastrado.
 O carro deve ser cadastrado como disponível para alugar por padrão.
+Apenas usuário administrador pode cadastrar um novo carro.
 
 ## Listagem de carro
 

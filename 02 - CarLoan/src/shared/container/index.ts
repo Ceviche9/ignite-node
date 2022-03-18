@@ -6,8 +6,6 @@ import { SpecificationRepository } from "@modules/cars/infra/typeorm/repositorie
 import { ICategoriesRepository } from "@modules/cars/repositories/Category/ICategoriesRepository"
 import { ISpecificationRepository } from "@modules/cars/repositories/Specification/ISpecificationRepository"
 
-
-// ICategoriesRepository
 container.registerSingleton<ICategoriesRepository>(
   "CategoriesRepository",
   CategoriesRepository
