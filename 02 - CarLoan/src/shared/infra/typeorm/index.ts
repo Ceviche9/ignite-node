@@ -1,14 +1,12 @@
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-interface IOptions {
-  host: string;
+// Por causa de um conflito que o docker tem com o typeorm, passa um host padrão com o nome dado ao service do banco de dados.
+export default async(host = "database_ignite"): Promise<Connection> => {
+  const defaultOptions = await getConnectionOptions();
+
+  return createConnection(
+    Object.assign(defaultOptions, {
+      host,
+    })
+  )
 }
-
-getConnectionOptions().then(options => {
-  const newOptions = options as IOptions;
-  //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
-  newOptions.host = 'database_ignite'; 
-  createConnection({
-    ...options,
-  });
-});
