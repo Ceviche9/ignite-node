@@ -38,7 +38,10 @@ class CarsRepository implements ICarsRepository {
   async findByLicensPlate(license_plate: string): Promise<Car> {
     return await this.repository.findOne({license_plate})
   }
-  
+
+  findAvailable(): Promise<Car[]> {
+    throw new Error("Method not implemented.");
+  }
 }
 
 export { CarsRepository }
