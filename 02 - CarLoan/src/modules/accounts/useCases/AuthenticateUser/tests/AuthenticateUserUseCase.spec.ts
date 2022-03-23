@@ -1,4 +1,4 @@
-import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
+import { UsersRepositoryInMemory } from "../../../implementations/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "../../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "../AuthenticateUserUseCase";
 import { ICreateUserDTO } from '../../../dtos/ICreateUser';
