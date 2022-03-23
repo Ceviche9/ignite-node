@@ -1,4 +1,4 @@
-import { CarsRepositoryInMemory } from "@modules/cars/repositories/Cars/in-memory/CarsRepositoryInMemory"
+import { CarsRepositoryInMemory } from "@modules/cars/implementations/Cars/in-memory/CarsRepositoryInMemory"
 import { AppError } from "@shared/infra/http/errors/AppError"
 import { CreateCarUseCase } from "../CreateCarUseCase"
 

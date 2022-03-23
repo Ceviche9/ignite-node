@@ -3,9 +3,9 @@ import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/Us
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository"
 import { CategoriesRepository } from "@modules/cars/infra/typeorm/repositories/CategoryRepositories"
 import { SpecificationRepository } from "@modules/cars/infra/typeorm/repositories/SpecificationRepository"
-import { ICategoriesRepository } from "@modules/cars/repositories/Category/ICategoriesRepository"
-import { ISpecificationRepository } from "@modules/cars/repositories/Specification/ISpecificationRepository"
-import { ICarsRepository } from "@modules/cars/repositories/Cars/ICarsRepository"
+import { ICategoriesRepository } from "@modules/cars/implementations/Category/ICategoriesRepository"
+import { ISpecificationRepository } from "@modules/cars/implementations/Specification/ISpecificationRepository"
+import { ICarsRepository } from "@modules/cars/implementations/Cars/ICarsRepository"
 import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository"
 
 container.registerSingleton<ICategoriesRepository>(

@@ -1,5 +1,5 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
-import { ICarsRepository } from "@modules/cars/repositories/Cars/ICarsRepository";
+import { ICarsRepository } from "@modules/cars/implementations/Cars/ICarsRepository";
 import { getRepository, Repository } from "typeorm";
 import { Car } from "../entities/Car";
 
@@ -44,7 +44,7 @@ class CarsRepository implements ICarsRepository {
     category_id?: string,
     name?: string
   ): Promise<Car[]> {
-    const carQuery = await this.repository
+    const carQuery = this.repository
     // Um nome para utilizar para fazer as buscas
       .createQueryBuilder("c")
     // Indicando qual é o resultado esperado para o parâmetro escolhido
