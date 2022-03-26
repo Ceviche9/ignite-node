@@ -1,0 +1,32 @@
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm"
+import {v4 as uuidV4} from "uuid"
+
+// @Entity("rentals")
+class Rental {
+
+  id: string
+
+  car_id: string
+
+  user_id: string
+
+  start_date: string
+
+  end_date: string
+
+  expected_return_date: string
+
+  total: number
+  
+  created_at: Date
+
+  updated_at: Date
+
+  constructor() {
+    if(!this.id) {
+      this.id = uuidV4();
+    }
+  }
+}
+
+export { Rental }
