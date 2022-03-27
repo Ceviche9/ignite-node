@@ -12,7 +12,7 @@ class Rental {
 
   start_date: string
 
-  end_date: string
+  end_date: Date
 
   expected_return_date: string
 
