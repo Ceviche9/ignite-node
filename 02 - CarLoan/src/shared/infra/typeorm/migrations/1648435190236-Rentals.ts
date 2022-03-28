@@ -27,7 +27,8 @@ export class Rentals1648305345969 implements MigrationInterface {
                     },
                     {
                         name: "end_date",
-                        type: "timestamp"
+                        type: "timestamp",
+                        isNullable: true
                     },
                     {
                         name: "expected_return_date",
@@ -35,10 +36,16 @@ export class Rentals1648305345969 implements MigrationInterface {
                     },
                     {
                         name: "total",
-                        type: "numeric"
+                        type: "numeric",
+                        isNullable: true
                     },
                     {
                         name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    },
+                    {
+                        name: "updated_at",
                         type: "timestamp",
                         default: "now()"
                     }
@@ -68,5 +75,4 @@ export class Rentals1648305345969 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("rentals")
     }
-
 }

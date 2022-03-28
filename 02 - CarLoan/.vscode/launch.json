@@ -7,19 +7,16 @@
     {
       "type": "node",
       "request": "attach",
-      "name": "Docker: Attach to Node",
-      "restart": true,
+      "name": "Docker Debugger",
       "port": 9229,
       "address": "localhost",
-      "protocol": "inspector",
+      "remoteRoot": "/",
+      "sourceMapPathOverrides": {
+        "/usr/app/*": "${workspaceRoot}/*"
+      },
       "skipFiles": [
-        "<node_internals>/**"
-      ],
-      // "program": "${workspaceFolder}/src/server.ts",
-      "outFiles": [
-        "${workspaceFolder}/**/*.js"
+        "<node_internals>/**/*.js"
       ]
     }
   ]
 }
-
