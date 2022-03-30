@@ -18,6 +18,14 @@ class DayjsDateProvider implements IDateProvider {
     return dayjs(end_date_utc).diff(start_date_utc, "hours");
   }
 
+  compareDateInDays(start_date: Date, end_date: Date): number {
+    const end_date_utc = this.dateFormatter(end_date)
+
+    const start_date_utc = this.dateFormatter(start_date)
+
+    return dayjs(end_date_utc).diff(start_date_utc, "days");
+  }
+
   dateFormatter(date: Date): string {
     return dayjs(date).utc().local().format()
   }

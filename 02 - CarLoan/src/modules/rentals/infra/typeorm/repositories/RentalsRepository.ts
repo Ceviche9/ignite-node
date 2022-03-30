@@ -23,6 +23,10 @@ class RentalsRepository implements IRentalsRepository {
     return rental
   }
 
+  async findById(rental_id: string): Promise<Rental> {
+    return await this.repository.findOne({ id: rental_id })
+  }
+
   async findByCarsId(car_id: string): Promise<Rental> {
     return this.repository.findOne({ car_id })
   }
