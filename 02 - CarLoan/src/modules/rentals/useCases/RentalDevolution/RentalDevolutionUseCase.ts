@@ -5,9 +5,12 @@ import { ICarsRepository } from "@modules/cars/implementations/Cars/ICarsReposit
 import { AppError } from "@shared/infra/http/errors/AppError";
 import { Rental } from "@modules/rentals/infra/entities/Rental";
 
+interface IRequest {
+  rental_id: string
+}
+
 @injectable()
 class RentalDevolutionUseCase {
-
   constructor(
     @inject("RentalsRepository")
     private rentalsRepository: IRentalsRepository,
@@ -17,7 +20,7 @@ class RentalDevolutionUseCase {
     private carsRepository: ICarsRepository
   ) {}
 
-  async execute(rental_id: string): Promise<Rental> {
+  async execute({ rental_id }: IRequest): Promise<Rental> {
     const rental = await this.rentalsRepository.findById(rental_id)
     const car = await this.carsRepository.findById(rental.car_id)
 
@@ -42,7 +45,10 @@ class RentalDevolutionUseCase {
 
     const currentDate = this.dateProvider.currentDate()
     // Quantos dias após o prazo de entrega o usuário ficou com o carro.
-    const delay = this.dateProvider.compareDateInDays(rental.expected_return_date, currentDate)
+    const delay = this.dateProvider.compareDateInDays(
+      currentDate, 
+      new Date(rental.start_date)
+    )
 
     // Calculando a multa
     if(delay <= 0) {

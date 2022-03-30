@@ -11,7 +11,8 @@
       "@shared/*": ["shared/*"],
       "@errors/*": ["errors/*"],
       "@utils/*": ["utils/*"]
-    },     
+    },
+    "strict": false, 
     "resolveJsonModule": true,                 
     "outDir": "./dist",                         
     "esModuleInterop": true,     

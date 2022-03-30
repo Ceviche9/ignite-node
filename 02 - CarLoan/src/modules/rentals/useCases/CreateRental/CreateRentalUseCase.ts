@@ -29,9 +29,9 @@ class CreateRentalUseCase {
     user_id,
     expected_return_date
   }: IRequest): Promise<Rental> {
-    const isAlreadyRented = await this.rentalsRepository.findByCarsId(car_id);
+    const isCarAlreadyRented = await this.rentalsRepository.findByCarsId(car_id);
 
-    if(isAlreadyRented) {
+    if(isCarAlreadyRented) {
       throw new AppError("Car already rented!")
     }
     const userHasAOpenRental = await this.rentalsRepository.findByUsersId(user_id)

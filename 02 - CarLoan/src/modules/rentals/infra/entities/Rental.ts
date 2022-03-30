@@ -14,7 +14,7 @@ class Rental {
   user_id: string
 
   @Column()
-  start_date: string
+  start_date: Date
 
   @Column()
   end_date: Date
