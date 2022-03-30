@@ -65,3 +65,11 @@ Ao realizar, a devolução o usuário deverá ser liberado para outro aluguel.
 Ao realizar, a devolução o deverá ser calculado o valor do aluguel.
 Caso o horário da devolução seja superior ao previsto para a entrega,
 deverá ser cobrado uma multa proporcional aos dias de atraso.
+
+## LIstagem de alugueis para usuário.
+
+**RF** => Requisitos funcionais
+Deve ser possível realizar a busca de todos os alugueis para o usuário.
+
+**RN** => Regras de negócio
+O usuário deve estar logado na aplicação.

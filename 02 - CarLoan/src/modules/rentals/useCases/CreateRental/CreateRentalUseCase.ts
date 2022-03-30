@@ -10,7 +10,7 @@ import { ICarsRepository } from "@modules/cars/implementations/Cars/ICarsReposit
 interface IRequest {
   user_id: string
   car_id: string
-  expected_return_date: Date
+  expected_return_date: string
 }
 
 @injectable()
@@ -29,12 +29,12 @@ class CreateRentalUseCase {
     user_id,
     expected_return_date
   }: IRequest): Promise<Rental> {
-    const isCarAlreadyRented = await this.rentalsRepository.findByCarsId(car_id);
+    const isCarAlreadyRented = await this.rentalsRepository.findOpenRentalByCarsId(car_id);
 
     if(isCarAlreadyRented) {
       throw new AppError("Car already rented!")
     }
-    const userHasAOpenRental = await this.rentalsRepository.findByUsersId(user_id)
+    const userHasAOpenRental = await this.rentalsRepository.findOpenRentalByUsersId(user_id)
 
     if (userHasAOpenRental) {
       throw new AppError("User has a open rental!")
@@ -43,6 +43,8 @@ class CreateRentalUseCase {
     const currentDateFormatted = this.dateProvider.currentDate()
     const compareDate = this.dateProvider.compareDateInHours(currentDateFormatted, expected_return_date)
 
+    const expected_return_date_formatted = this.dateProvider.dateFormatter(expected_return_date)
+
     if(compareDate < 24) {
       throw new AppError("Invalid return time")
     }
@@ -50,7 +52,7 @@ class CreateRentalUseCase {
     const rental = await this.rentalsRepository.create({
       user_id,
       car_id,
-      expected_return_date
+      expected_return_date: expected_return_date_formatted
     })
 
     await this.carsRepository.updateAvailable(car_id, false)
