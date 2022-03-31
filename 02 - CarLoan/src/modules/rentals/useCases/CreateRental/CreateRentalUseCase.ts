@@ -46,7 +46,7 @@ class CreateRentalUseCase {
     const expected_return_date_formatted = this.dateProvider.dateFormatter(expected_return_date)
 
     if(compareDate < 24) {
-      throw new AppError("Invalid return time")
+      throw new AppError("Invalid return date!")
     }
 
     const rental = await this.rentalsRepository.create({

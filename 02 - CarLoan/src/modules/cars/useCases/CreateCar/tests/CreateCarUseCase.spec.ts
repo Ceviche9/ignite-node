@@ -27,18 +27,16 @@ describe("Create Car", () => {
   })
   
   it("Should not be possible to register a car with a license plate that has already been registered.", async () => {
-    await expect(async () => {
-      await createCarUseCase.execute({
-        name: "Fake-Car-1",
-        description: "Fake-Description-Car",
-        daily_rate: 100,
-        brand: "Brand",
-        fine_amount: 60,
-        license_plate: "ABC-1234",
-        category_id: "category_id",
-      });
-
-      await createCarUseCase.execute({
+    await createCarUseCase.execute({
+      name: "Fake-Car-1",
+      description: "Fake-Description-Car",
+      daily_rate: 100,
+      brand: "Brand",
+      fine_amount: 60,
+      license_plate: "ABC-1234",
+      category_id: "category_id",
+    });
+    await expect(createCarUseCase.execute({
         name: "Fake-Car-2",
         description: "Fake-Description-Car",
         daily_rate: 100,
@@ -46,8 +44,7 @@ describe("Create Car", () => {
         fine_amount: 60,
         license_plate: "ABC-1234",
         category_id: "category_id",
-      });
-    }).rejects.toBeInstanceOf(AppError)
+      })).rejects.toEqual(new AppError("Car already exists!"))
   })
 
   it("should be registered as available for rent by default.", async() => {
