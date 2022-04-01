@@ -4,6 +4,7 @@ interface IDateProvider {
   dateFormatter(date: string): Date 
   dateFormatterUTC(date: Date): string
   currentDate(): Date
+  addDays(days: number): Date
 }
 
 export { IDateProvider }
