@@ -1,6 +1,8 @@
 import { IMailProvider, IMessage } from "../IMailProvider";
 import nodemailer from "nodemailer"
 import Mail from "nodemailer/lib/mailer";
+import handlebars from "handlebars"
+import fs from "fs"
 
 export class MailtrapMailProvider implements IMailProvider {
   private transporter: Mail;
@@ -16,7 +18,18 @@ export class MailtrapMailProvider implements IMailProvider {
     })
   }
 
-  async sendMail(to: string, subject: string, body: string): Promise<void> {
+  async sendMail(
+    to: string, 
+    subject: string,
+    variables: any,
+    path: string
+  ): Promise<void> {
+    const templateFileContent = fs.readFileSync(path).toString("utf-8")
+
+    const templateParse = handlebars.compile(templateFileContent)
+
+    const templateHTML = templateParse(variables)
+
     await this.transporter.sendMail({
       to: {
         name: "Teste",
@@ -27,7 +40,7 @@ export class MailtrapMailProvider implements IMailProvider {
         address: "<noreplay@carloan.com.br>"
       },
       subject,
-      html: body
+      html: templateHTML
     })
   }
 }
