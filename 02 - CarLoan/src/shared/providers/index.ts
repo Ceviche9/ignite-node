@@ -1,9 +1,15 @@
 import { container } from "tsyringe"
+import { IDateProvider } from "./DateProvider/IDateProvider"
 import { DayjsDateProvider } from "./DateProvider/implementations/DayjsDateProvider"
-import { IDateProvider } from "./IDateProvider"
+import { IMailProvider } from "./mailProvider/IMailProvider"
+import { EtherealMailProvider } from "./mailProvider/implementations/EtherealMailProvider"
 
 container.registerSingleton<IDateProvider>(
   "DayjsDateProvider",
   DayjsDateProvider
 )
 
+container.registerSingleton<IMailProvider>(
+  "EtherealMailProvider",
+  EtherealMailProvider
+)

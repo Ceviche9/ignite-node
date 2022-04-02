@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { IRentalsRepository } from "@modules/rentals/implementations/IRentalsRepository";
-import { IDateProvider } from "@shared/providers/IDateProvider";
 import { ICarsRepository } from "@modules/cars/implementations/Cars/ICarsRepository";
 import { AppError } from "@shared/infra/http/errors/AppError";
 import { Rental } from "@modules/rentals/infra/entities/Rental";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
 
 interface IRequest {
   rental_id: string

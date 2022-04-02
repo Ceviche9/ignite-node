@@ -6,7 +6,7 @@ import auth from '@config/auth';
 import { compare } from "bcrypt"
 import { AppError } from '@shared/infra/http/errors/AppError';
 import { IUsersTokensRepository } from '@modules/accounts/implementations/IUsersTokensRepository';
-import { IDateProvider } from '@shared/providers/IDateProvider';
+import { IDateProvider } from '@shared/providers/DateProvider/IDateProvider';
 
 interface IRequest {
   email: string

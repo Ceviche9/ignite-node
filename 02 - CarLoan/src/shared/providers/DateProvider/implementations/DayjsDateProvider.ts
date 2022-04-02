@@ -1,11 +1,15 @@
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 
-import { IDateProvider } from "@shared/providers/IDateProvider";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
 
 dayjs.extend(utc)
 
 class DayjsDateProvider implements IDateProvider {
+  addHours(hours: number): Date {
+    return dayjs().add(hours, "hours").toDate()
+  }
+
   addDays(days: number): Date {
     return dayjs().add(days, "days").toDate()
   }
