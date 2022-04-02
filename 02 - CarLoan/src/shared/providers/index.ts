@@ -3,13 +3,20 @@ import { IDateProvider } from "./DateProvider/IDateProvider"
 import { DayjsDateProvider } from "./DateProvider/implementations/DayjsDateProvider"
 import { IMailProvider } from "./mailProvider/IMailProvider"
 import { EtherealMailProvider } from "./mailProvider/implementations/EtherealMailProvider"
+import { MailtrapMailProvider } from "./mailProvider/implementations/MailtrapMailProvider"
 
 container.registerSingleton<IDateProvider>(
   "DayjsDateProvider",
   DayjsDateProvider
 )
 
-container.registerSingleton<IMailProvider>(
+// Para que a instância seja criada no momento em que a aplicação em "buildada".
+container.registerInstance<IMailProvider>(
   "EtherealMailProvider",
-  EtherealMailProvider
+  new EtherealMailProvider()
+)
+
+container.registerSingleton<IMailProvider>(
+  "MailtrapMailProvider",
+  MailtrapMailProvider
 )

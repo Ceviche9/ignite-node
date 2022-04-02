@@ -6,6 +6,7 @@ import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositor
 import { AppError } from "@shared/infra/http/errors/AppError";
 import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
 import { EtherealMailProvider } from "@shared/providers/mailProvider/implementations/EtherealMailProvider";
+import { MailtrapMailProvider } from "@shared/providers/mailProvider/implementations/MailtrapMailProvider";
 
 
 @injectable()
@@ -18,8 +19,10 @@ class SendForgotMailPasswordUseCase {
     private usersTokensRepository: UsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider,
-    @inject("EtherealMailProvider")
-    private mailProvider: EtherealMailProvider,
+    // @inject("EtherealMailProvider")
+    // private mailProvider: EtherealMailProvider,
+    @inject("MailtrapMailProvider")
+    private mailProvider: MailtrapMailProvider,
   ) {}
 
   async execute(email: string): Promise<void> {
