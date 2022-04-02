@@ -2,12 +2,11 @@ import { inject, injectable } from "tsyringe";
 import {v4 as uuidV4} from "uuid"
 import { resolve } from "path"
 
-import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
-import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { AppError } from "@shared/infra/http/errors/AppError";
 import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
-import { EtherealMailProvider } from "@shared/providers/mailProvider/implementations/EtherealMailProvider";
-import { MailtrapMailProvider } from "@shared/providers/mailProvider/implementations/MailtrapMailProvider";
+import { IUsersRepository } from "@modules/accounts/implementations/IUsersRepository";
+import { IUsersTokensRepository } from "@modules/accounts/implementations/IUsersTokensRepository";
+import { IMailProvider } from "@shared/providers/mailProvider/IMailProvider";
 
 
 @injectable()
@@ -15,15 +14,15 @@ class SendForgotMailPasswordUseCase {
 
   constructor(
     @inject("UsersRepository")
-    private usersRepository: UsersRepository,
+    private usersRepository: IUsersRepository,
     @inject("UsersTokensRepository")
-    private usersTokensRepository: UsersTokensRepository,
+    private usersTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider,
     // @inject("EtherealMailProvider")
     // private mailProvider: EtherealMailProvider,
     @inject("MailtrapMailProvider")
-    private mailProvider: MailtrapMailProvider,
+    private mailProvider: IMailProvider,
   ) {}
 
   async execute(email: string): Promise<void> {

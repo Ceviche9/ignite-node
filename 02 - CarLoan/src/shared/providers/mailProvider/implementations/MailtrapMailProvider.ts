@@ -12,14 +12,14 @@ export class MailtrapMailProvider implements IMailProvider {
       host: "smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: "5571233469788a",
-        pass: "86bd9cc6d1c4ec"
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS
       }
     })
   }
 
   async sendMail(
-    to: string, 
+    to: string,
     subject: string,
     variables: any,
     path: string
