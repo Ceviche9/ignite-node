@@ -35,14 +35,14 @@ describe("Category Controller test", () => {
       password: "admin"
     })
 
-    const { token } = responseToken.body
+    const { refresh_token } = responseToken.body
 
 
     const response = await request(app).post("/categories").send({
       name: "Category Supertest",
       description: "Category Supertest"
     }).set({ 
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${refresh_token}`
     })
 
     expect(response.status).toBe(201)
@@ -55,14 +55,14 @@ describe("Category Controller test", () => {
       password: "admin"
     })
 
-    const { token } = responseToken.body
+    const { refresh_token } = responseToken.body
 
 
     const response = await request(app).post("/categories").send({
       name: "Category Supertest",
       description: "Category Supertest"
     }).set({ 
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${refresh_token}`
     })
 
     expect(response.status).toBe(400)

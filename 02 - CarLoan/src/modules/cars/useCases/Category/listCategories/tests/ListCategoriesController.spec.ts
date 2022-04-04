@@ -35,13 +35,13 @@ describe("List Categories test", () => {
       password: "admin"
     })
 
-    const { token } = responseToken.body
+    const { refresh_token } = responseToken.body
 
     await request(app).post("/categories").send({
       name: "Category Supertest",
       description: "Category Supertest"
     }).set({ 
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${refresh_token}`
     })
 
     const response = await request(app).get("/categories")
