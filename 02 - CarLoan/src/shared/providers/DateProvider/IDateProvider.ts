@@ -6,7 +6,7 @@ interface IDateProvider {
   currentDate(): Date
   addDays(days: number): Date
   addHours(hours: number): Date
-  //TODO: CompareIFBefore
+  CompareIfBefore(start_date: Date, end_date: Date): boolean
 }
 
 export { IDateProvider }
