@@ -59,6 +59,10 @@ class RentalDevolutionUseCase {
     // Calculando o valor total.
     total += daily * car.daily_rate
 
+    if(Math.sign(total) === -1) {
+      throw new AppError("Something went wrong to calculate fine")
+    }
+
     rental.end_date = this.dateProvider.currentDate()
     rental.total = total
     
