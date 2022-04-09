@@ -5,15 +5,18 @@ import { CreateUserController } from "../../../../modules/accounts/useCases/crea
 import { UpdateUserAvatarController } from "../../../../modules/accounts/useCases/updateUserAvatar/UpdateUserAvatarController";
 
 import uploadConfig from "@config/upload"
+import { UsersProfileController } from "@modules/accounts/useCases/Profile/UsersProfileController";
 
 const usersRoutes = Router();
 const uploadAvatar = multer(uploadConfig)
 
 const createUserController = new CreateUserController()
 const updateUserAvatarController = new UpdateUserAvatarController()
+const usersProfileController = new UsersProfileController()
 
 usersRoutes.post('/', createUserController.handle)
 usersRoutes.use(ensureAthenticated)
+usersRoutes.get('/profile', usersProfileController.handle)
 usersRoutes.patch('/avatar', uploadAvatar.single("avatar"), updateUserAvatarController.handle)
 
 export { usersRoutes }
