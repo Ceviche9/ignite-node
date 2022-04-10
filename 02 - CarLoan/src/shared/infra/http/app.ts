@@ -11,11 +11,15 @@ import "@shared/container"
 
 import { router } from "@shared/infra/http/routes";
 import { AppError } from "@shared/infra/http/errors/AppError";
+import upload from '@config/upload';
 
 createConnection();
 const app = express();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`))
+app.use("/cars", express.static(`${upload.tmpFolder}/cars`))
 
 app.use(express.json())
 
